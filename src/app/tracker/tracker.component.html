@@ -1,0 +1,54 @@
+<div class = "container-fluid">
+
+  <h3> Hi, {{currentUsername}}</h3>
+  <h3> Track your shows, movies, books, and places! </h3>
+  <button routerLink="/home"
+          class="btn btn-outline-dark btn-block"
+          (click)="logout()"> Logout </button>
+
+  <div class = "row">
+    <div class = "col-4">
+      <ul class="list-group">
+        <li class="list-group-item active">Tracking</li>
+        <li class="list-group-item webdev"
+            [ngClass]="{'active': 'movies' === selectedType}"
+            (click)="showMovies()">
+          Movies
+        </li>
+        <li class="list-group-item webdev"
+            [ngClass]="{'active': 'shows' === selectedType}"
+            (click)="showShows()">
+          Shows
+        </li>
+        <li class="list-group-item webdev"
+            [ngClass]="{'active': 'books' === selectedType}"
+            (click)="showBooks()">
+          Books
+        </li>
+        <li class="list-group-item webdev"
+            [ngClass]="{'active': 'places' === selectedType}"
+            (click)="showPlaces()">
+          Places
+        </li>
+      </ul>
+    </div>
+
+    <div *ngIf="selectedType === 'movies'" class = "col-8">
+      <app-movie-list [movies] = "movies"></app-movie-list>
+    </div>
+
+    <div *ngIf="selectedType === 'shows'" class = "col-8">
+      <app-show-list [shows] = "shows"></app-show-list>
+    </div>
+
+    <div *ngIf="selectedType === 'books'" class = "col-8">
+      <app-book-list [books] = "books"></app-book-list>
+    </div>
+
+    <div *ngIf="selectedType === 'places'" class = "col-8">
+      <app-places [places] = "places"></app-places>
+    </div>
+
+  </div>
+
+</div>

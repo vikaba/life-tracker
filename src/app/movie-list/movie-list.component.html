@@ -1,0 +1,18 @@
+<div class = "container-fluid">
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Status</th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tr *ngFor="let movie of movies">
+    <td> {{movie.name}}</td>
+    <td> {{movie.status}}</td>
+    <th><button class = "btn btn-warning">x</button></th>
+    <th><button class = "btn btn-secondary">update</button></th>
+  </tr>
+</table>
+</div>
