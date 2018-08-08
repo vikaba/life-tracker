@@ -11,7 +11,7 @@ module.exports = function (app) {
         var credentials = req.body;
         userModel
             .findUserByCredentials(credentials)
-            .then(function(user) {
+            .then(function (user) {
                 if (user) {
                     req.session['currentUser'] = user;
                     res.json(user);
@@ -36,18 +36,19 @@ module.exports = function (app) {
 
     function createUser(req, res) {
         var user = req.body;
-        console.log(user.username);
-        console.log((userModel.findUserByUsername(user.username)));
-        if (userModel.findUserByUsername(user.username) === null) {
-            res.sendStatus(409);
-            console.log("errored")
-        } else {
-            userModel.createUser(user)
-                .then(function (user) {
-                    req.session['currentUser'] = user;
-                    res.send(user)
-                });
-        }
+        userModel
+            .findUserByUsername(user.username)
+            .then(function (user) {
+                if (user) {
+                    res.sendStatus(409);
+                } else {
+                    userModel.createUser(user)
+                        .then(function (user) {
+                            req.session['currentUser'] = user;
+                            res.json(user)
+                        });
+                }
+            });
     }
 
     function findAllUsers(req, res) {
