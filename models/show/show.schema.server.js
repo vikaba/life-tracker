@@ -1,7 +1,9 @@
 var mongoose = require('mongoose');
 
 var showSchema = mongoose.Schema({
-    name: String
+    _id: String,
+    name: String,
+    status: String
 }, {collection: 'show'});
 
 module.exports = showSchema;

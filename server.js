@@ -54,9 +54,7 @@ function getSessionAll(req, res) {
 }
 
 function resetSession(req, res) {
-    console.log(req.session)
     req.session.destroy();
-    console.log(req.session)
     res.sendStatus(200);
 }
 

@@ -4,8 +4,6 @@ module.exports = function (app) {
     app.post('/api/user', createUser);
     app.post('/api/logout', logout);
     app.post('/api/login', login);
-    app.post('/api/currentUser', login);
-    app.post('/api/currentUser', createUser);
 
     var userModel = require('../models/user/user.model.server');
 
