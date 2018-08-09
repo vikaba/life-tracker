@@ -1,6 +1,6 @@
 <div class = "container-fluid">
 
-  <h3> Hi, {{currentUsername}}</h3>
+  <h3> Hi, {{currentUser.username}}</h3>
   <h3> Track your shows, movies, books, and places! </h3>
   <button routerLink="/home"
           class="btn btn-outline-dark btn-block"
@@ -42,7 +42,7 @@
     </div>
 
     <div *ngIf="selectedType === 'books'" class = "col-8">
-      <app-book-list [books] = "books"></app-book-list>
+      <app-book-list [books] = "books" [currentUser]="currentUser"></app-book-list>
     </div>
 
     <div *ngIf="selectedType === 'places'" class = "col-8">

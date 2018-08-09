@@ -17,7 +17,7 @@ export class TrackerComponent implements OnInit {
   movies;
   books;
   shows;
-  currentUsername;
+  currentUser;
 
   constructor(private movieService: MovieServiceClient,
               private bookService: BookServiceClient,
@@ -26,8 +26,8 @@ export class TrackerComponent implements OnInit {
               private userService: UserServiceClient) {}
 
   ngOnInit() {
-    this.currentUsername = this.userService.currentUser().then((u) => {
-      this.currentUsername = u.currentUser.username;
+    this.currentUser = this.userService.currentUser().then((u) => {
+      this.currentUser = u.currentUser;
     });
   }
 
@@ -38,22 +38,22 @@ export class TrackerComponent implements OnInit {
 
   showBooks() {
     this.selectedType = 'books';
-    this.books = this.bookService.findUserBooks();
+    this.bookService.findUserBooks(this.currentUser._id).then(books => this.books = books);
   }
 
   showShows() {
     this.selectedType = 'shows';
-    this.shows = this.showService.findUserShows();
+    this.showService.findUserShows().then(shows => this.shows = shows);
   }
 
   showMovies() {
     this.selectedType = 'movies';
-    this.movies = this.movieService.findUserMovies();
+    this.movieService.findUserMovies().then(movies => this.movies = movies);
   }
 
   showPlaces() {
     this.selectedType = 'places';
-    this.places = this.placeService.findUserPlaces();
+    this.placeService.findUserPlaces().then(places => this.places = places);
   }
 
 }

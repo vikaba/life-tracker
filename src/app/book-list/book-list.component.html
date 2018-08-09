@@ -10,11 +10,31 @@
       <th></th>
     </tr>
     </thead>
+    <tr>
+      <th><input [(ngModel)]="name"
+                 placeholder="name"
+                 class="form-control"></th>
+      <th><input [(ngModel)]="author"
+                 placeholder="author"
+                 class="form-control"
+                 id = "password"
+                 type="password"/></th>
+      <th><select [(ngModel)]="status" class="form-control" id = "status">
+        <option selected value = "present">in progress</option>
+        <option value = "past">finished</option>
+        <option value = "future">to read</option>
+      </select></th>
+      <th><button (click)="createUserBook(name, author, status)" class="btn btn-success btn-block">
+        + </button></th>
+      <th><button (click)="confirmUpdateBook()" class="btn btn-success btn-block">
+        update</button></th>
+    </tr>
     <tr *ngFor="let book of books">
       <td> {{book.name}}</td>
       <td> {{book.author}}</td>
       <td> {{book.status}}</td>
-      <th><button class = "btn btn-warning">x</button></th>
+      <th><button class = "btn btn-warning"
+                  (click) = 'updateBook()'>x</button></th>
       <th><button class = "btn btn-secondary">update</button></th>
     </tr>
   </table>
